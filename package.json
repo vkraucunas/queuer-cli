@@ -1,0 +1,17 @@
+{
+  "name": "queuer-cli",
+  "version": "1.0.0",
+  "description": "Lets you make a list of priorities, be it things that need to be purchased, tasks to be completed, or projects to take on and then compare each item against every other item on the list and spits back an ordered list based on user response.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Valerie Kraucunas",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "bin": {
+    "queuer": "./index.js"
+  }
+}

@@ -8,7 +8,7 @@ program
     .usage('[options] <task> [otherTasks...]')
     .option('-f, --file <filepath>', 'The file to store tasks in')
     .option('-l, --list', 'List Tasks')
-    .option('-o, --order', 'Order Tasks')
+    .option('-c, --compare', 'Compare Tasks')
     .parse(process.argv);
 
-queuerCLI(program.file, program.list, program.order, program.args);
+queuerCLI(program.file, program.list, program.compare, program.args);

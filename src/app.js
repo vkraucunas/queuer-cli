@@ -1,6 +1,7 @@
 /*jslint node: true */
 'use strict';
 var fs = require('fs');
+var prompts = require('./prompts');
 
 const dataTemplate = {
     initialized: new Date(),
@@ -61,24 +62,28 @@ function writeDataToFile(filepath, data) {
     });
 }
 
-function orderTasks(enabled, data) {
+function orderTasks(data) {
     return new Promise((resolve, reject) => {
-        if(!enabled) {return resolve(data);}
+        console.log(data);
         console.log('Ordering enabled');
         //do shit here
         //resolve(results);
     });
 }
-function app(filepath, list, order, tasks) {
+function app(filepath, listOut, isComparing, tasks) {
     doesFileExist(filepath).then(data => {
-        processNewTasks(data, tasks)
-            .then(dataToWrite => {
-                writeDataToFile(filepath, dataToWrite)
-                    .then(writtenData => {
-                        if(list) {listTasks(writtenData);}
-                    })});
-
-    }).catch(err => {
+        if(!isComparing) {
+            processNewTasks(data, tasks)
+                .then(dataToWrite => {
+                    writeDataToFile(filepath, dataToWrite)
+                        .then(writtenData => {
+                            if(listOut) {listTasks(writtenData);}
+                        })});
+        } else {
+            orderTasks(data);
+        }
+    })
+    .catch(err => {
         console.log(err);
     });
 }
